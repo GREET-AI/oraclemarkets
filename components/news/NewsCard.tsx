@@ -67,15 +67,17 @@ export function NewsCard({ article }: NewsCardProps) {
           <span className="text-xs font-sans text-[#E0E0E0]/60">
             {article.source}
           </span>
-          <Link
-            href={article.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 text-[#FF006E] hover:text-[#FF6B35] transition-colors text-sm font-heading font-semibold"
-          >
-            Read more
-            <ExternalLink className="w-4 h-4" />
-          </Link>
+          {article.url && (
+            <Link
+              href={article.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-[#FF006E] hover:text-[#FF6B35] transition-colors text-sm font-heading font-semibold"
+            >
+              Read more
+              <ExternalLink className="w-4 h-4" />
+            </Link>
+          )}
         </div>
       </div>
     </motion.div>

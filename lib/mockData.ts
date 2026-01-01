@@ -342,17 +342,15 @@ export const socialPosts: SocialPost[] = [
   },
 ];
 
-// News Articles
-export interface NewsArticle {
+// News Articles (legacy - use NewsArticle interface below)
+export const newsArticles: Array<{
   title: string;
   source: string;
   date: string;
   excerpt: string;
   category: string;
   url?: string;
-}
-
-export const newsArticles: NewsArticle[] = [
+}> = [
   {
     title: "Decentralized Prediction Markets See Record Growth in 2024",
     source: "CoinDesk",
