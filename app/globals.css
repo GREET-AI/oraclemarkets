@@ -1,26 +1,310 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Pink-Orange Color Palette */
+  --color-background: #0A0A0A;
+  --color-foreground: #E0E0E0;
+  --color-primary: #FF006E;
+  --color-secondary: #FF6B35;
+  --color-accent: #F7931E;
+  --color-card: #1A0A1A;
+  --color-border: #2A1A2A;
+  --radius: 0.5rem;
+  
+  /* Font Variables */
+  --font-display: var(--font-outfit), system-ui, sans-serif;
+  --font-heading: var(--font-bricolage), system-ui, sans-serif;
+  --font-sans: var(--font-geist-sans), system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), monospace;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-background: var(--color-background);
+  --color-foreground: var(--color-foreground);
+  --color-primary: var(--color-primary);
+  --color-secondary: var(--color-secondary);
+  --color-accent: var(--color-accent);
+  --color-card: var(--color-card);
+  --color-border: var(--color-border);
+  --font-display: var(--font-display);
+  --font-heading: var(--font-heading);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  
+  body {
+    background: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Gradient Utilities */
+.gradient-pink-orange {
+  background: linear-gradient(135deg, #FF006E 0%, #FF6B35 100%);
+}
+
+.gradient-orange-yellow {
+  background: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%);
+}
+
+.gradient-pink-orange-text {
+  background: linear-gradient(135deg, #FF006E 0%, #FF6B35 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Radar Sweep Animation */
+@keyframes radar-sweep {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.radar-sweep {
+  animation: radar-sweep 3s linear infinite;
+}
+
+/* Pulse Glow Animation */
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 1;
+    box-shadow: 0 0 20px rgba(255, 0, 110, 0.5);
+  }
+  50% {
+    opacity: 0.7;
+    box-shadow: 0 0 40px rgba(255, 0, 110, 0.8);
+  }
+}
+
+.pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Gradient Shift Animation */
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.gradient-shift {
+  background: linear-gradient(
+    90deg,
+    #FF006E 0%,
+    #FF6B35 25%,
+    #F7931E 50%,
+    #FF6B35 75%,
+    #FF006E 100%
+  );
+  background-size: 200% auto;
+  animation: gradient-shift 3s linear infinite;
+}
+
+/* Neon Flicker Animation */
+@keyframes neon-flicker {
+  0%, 100% {
+    opacity: 1;
+    filter: brightness(1);
+  }
+  50% {
+    opacity: 0.8;
+    filter: brightness(1.2);
+  }
+}
+
+.neon-flicker {
+  animation: neon-flicker 2s ease-in-out infinite;
+}
+
+/* Code Typing Animation */
+@keyframes code-typing {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+.code-typing {
+  animation: code-typing 0.5s steps(40) forwards;
+}
+
+/* Glow Border Effect */
+.glow-border {
+  position: relative;
+}
+
+.glow-border::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(135deg, #FF006E, #FF6B35, #F7931E);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.6;
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Particle Background */
+.particle-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: 
+    radial-gradient(circle at 20% 50%, rgba(255, 0, 110, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(255, 107, 53, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 20%, rgba(247, 147, 30, 0.1) 0%, transparent 50%);
+}
+
+/* Solana Wallet Adapter Styles */
+.wallet-adapter-button {
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  transition: all 0.2s ease;
+}
+
+.wallet-adapter-button:hover {
+  opacity: 0.8;
+}
+
+.wallet-adapter-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.wallet-adapter-modal-wrapper {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.wallet-adapter-modal {
+  background-color: #1A0A1A;
+  border: 2px solid #2A1A2A;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  max-width: 400px;
+  width: 90%;
+  color: #fff;
+}
+
+.wallet-adapter-modal-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.wallet-adapter-modal-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.wallet-adapter-modal-list-item {
+  margin-bottom: 0.5rem;
+}
+
+.wallet-adapter-modal-list-item button {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #0A0A0A;
+  border: 2px solid #2A1A2A;
+  border-radius: 0.5rem;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.wallet-adapter-modal-list-item button:hover {
+  border-color: #FF006E;
+  background-color: #1A0A1A;
+}
+
+/* Logo Animation */
+@keyframes logo-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes logo-shine {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+@keyframes logo-glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 8px rgba(255, 0, 110, 0.6));
+  }
+  50% {
+    filter: drop-shadow(0 0 16px rgba(255, 107, 53, 0.8));
+  }
+}
+
+.logo-container {
+  position: relative;
+  display: inline-block;
+}
+
+.logo-rotating {
+  animation: logo-rotate 8s linear infinite;
+  filter: drop-shadow(0 0 8px rgba(255, 0, 110, 0.6));
+  animation: logo-rotate 8s linear infinite, logo-glow 3s ease-in-out infinite;
+}
+
+.logo-shine-overlay {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: logo-shine 3s ease-in-out infinite;
+  pointer-events: none;
+  mix-blend-mode: overlay;
 }
